@@ -1,24 +1,17 @@
 import { Code, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { ThemeToggle } from "./ThemeToggle";
+import { useScrollToSection } from "../hooks";
+import { navItems } from "../config/socialLinks";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const scrollToSection = useScrollToSection();
 
-  const scrollToSection = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setIsMenuOpen(false);
-    }
+  const handleNavClick = (id) => {
+    scrollToSection(id);
+    setIsMenuOpen(false);
   };
-
-  const navItems = [
-    { label: "About", id: "about" },
-    { label: "Skills", id: "skills" },
-    { label: "Projects", id: "projects" },
-    { label: "Contact", id: "contact" },
-  ];
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 bg-opacity-80 dark:bg-opacity-80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800">
@@ -37,7 +30,7 @@ export function Header() {
             {navItems.map((item) => (
               <button
                 key={item.id}
-                onClick={() => scrollToSection(item.id)}
+                onClick={() => handleNavClick(item.id)}
                 className="text-gray-700 dark:text-gray-300 hover:text-blue-500 transition-colors duration-300 font-medium"
               >
                 {item.label}
@@ -70,7 +63,7 @@ export function Header() {
             {navItems.map((item) => (
               <button
                 key={item.id}
-                onClick={() => scrollToSection(item.id)}
+                onClick={() => handleNavClick(item.id)}
                 className="w-full text-left px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
               >
                 {item.label}
