@@ -23,96 +23,96 @@ export function Contact() {
     setFormData({ name: "", email: "", message: "" });
   };
 
+  const socialItems = [
+    {
+      icon: Mail,
+      label: "Email",
+      value: socialLinks.email,
+      link: socialLinks.emailLink,
+      color: "from-red-500 to-pink-500",
+      hoverColor: "hover:from-red-600 hover:to-pink-600",
+    },
+    {
+      icon: Send,
+      label: "Telegram",
+      value: socialLinks.telegram,
+      link: socialLinks.telegramLink,
+      color: "from-sky-500 to-blue-500",
+      hoverColor: "hover:from-sky-600 hover:to-blue-600",
+    },
+    {
+      icon: Github,
+      label: "GitHub",
+      value: socialLinks.github,
+      link: socialLinks.githubLink,
+      color: "from-gray-600 to-gray-700",
+      hoverColor: "hover:from-gray-700 hover:to-gray-800",
+    },
+    {
+      icon: Linkedin,
+      label: "LinkedIn",
+      value: "Abbos Ismoilov",
+      link: socialLinks.linkedinLink,
+      color: "from-blue-600 to-blue-700",
+      hoverColor: "hover:from-blue-700 hover:to-blue-800",
+    },
+  ];
+
   return (
     <section
       id="contact"
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900"
+      className="py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-secondary-900"
     >
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-12 text-center">
-          Get In Touch
-        </h2>
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-secondary-900 dark:text-white mb-4">
+            Get In Touch
+          </h2>
+          <div className="h-1 w-20 bg-gradient-to-r from-primary-500 to-accent-500 mx-auto rounded-full mb-4"></div>
+          <p className="text-lg text-secondary-600 dark:text-secondary-400">
+            Let's collaborate and create something amazing together
+          </p>
+        </div>
 
         {/* Social Links Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
-          {/* Email */}
-          <a
-            href={socialLinks.emailLink}
-            aria-label="Email"
-            className="group flex flex-col items-center gap-3 p-6 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-red-500 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-300"
-          >
-            <Mail className="w-8 h-8 text-gray-700 dark:text-gray-400 group-hover:text-red-500 group-hover:scale-110 transition-all duration-300" />
-            <span className="text-sm font-medium text-gray-700 dark:text-gray-400 group-hover:text-red-500 transition-colors text-center">
-              Email
-            </span>
-            <span className="text-xs text-gray-600 dark:text-gray-500 text-center">
-              {socialLinks.email}
-            </span>
-          </a>
-
-          {/* Telegram */}
-          <a
-            href={socialLinks.telegramLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Telegram"
-            className="group flex flex-col items-center gap-3 p-6 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-sky-500 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-300"
-          >
-            <Send className="w-8 h-8 text-gray-700 dark:text-gray-400 group-hover:text-sky-500 group-hover:scale-110 group-hover:rotate-45 transition-all duration-300" />
-            <span className="text-sm font-medium text-gray-700 dark:text-gray-400 group-hover:text-sky-500 transition-colors text-center">
-              Telegram
-            </span>
-            <span className="text-xs text-gray-600 dark:text-gray-500 text-center">
-              {socialLinks.telegram}
-            </span>
-          </a>
-
-          {/* GitHub */}
-          <a
-            href={socialLinks.githubLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-            className="group flex flex-col items-center gap-3 p-6 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-purple-500 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-300"
-          >
-            <Github className="w-8 h-8 text-gray-700 dark:text-gray-400 group-hover:text-purple-500 group-hover:scale-110 transition-all duration-300" />
-            <span className="text-sm font-medium text-gray-700 dark:text-gray-400 group-hover:text-purple-500 transition-colors text-center">
-              GitHub
-            </span>
-            <span className="text-xs text-gray-600 dark:text-gray-500 text-center">
-              {socialLinks.github}
-            </span>
-          </a>
-
-          {/* LinkedIn */}
-          <a
-            href={socialLinks.linkedinLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            className="group flex flex-col items-center gap-3 p-6 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-600 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-300"
-          >
-            <Linkedin className="w-8 h-8 text-gray-700 dark:text-gray-400 group-hover:text-blue-600 group-hover:scale-110 transition-all duration-300" />
-            <span className="text-sm font-medium text-gray-700 dark:text-gray-400 group-hover:text-blue-600 transition-colors text-center">
-              LinkedIn
-            </span>
-            <span className="text-xs text-gray-600 dark:text-gray-500 text-center">
-              Abbos Ismoilov
-            </span>
-          </a>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+          {socialItems.map((item, index) => {
+            const Icon = item.icon;
+            return (
+              <a
+                key={item.label}
+                href={item.link}
+                target={item.label !== "Email" ? "_blank" : undefined}
+                rel={item.label !== "Email" ? "noopener noreferrer" : undefined}
+                aria-label={item.label}
+                className="group relative h-40 rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 hover:translate-y-[-4px]"
+              >
+                <div
+                  className={`absolute inset-0 bg-gradient-to-br ${item.color} ${item.hoverColor} transition-all duration-300`}
+                ></div>
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-4 text-white relative z-10">
+                  <Icon className="w-8 h-8 group-hover:scale-125 transition-transform duration-300" />
+                  <div className="text-center">
+                    <p className="font-semibold text-sm">{item.label}</p>
+                    <p className="text-xs opacity-90 truncate max-w-full">{item.value}</p>
+                  </div>
+                </div>
+              </a>
+            );
+          })}
         </div>
 
         {/* Contact Form */}
-        <div className="max-w-2xl mx-auto p-8 bg-gray-50 dark:bg-gray-800 backdrop-blur-sm rounded-2xl border border-gray-200 dark:border-gray-700">
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+        <div className="max-w-2xl mx-auto p-8 bg-gradient-to-br from-secondary-50 to-secondary-100 dark:from-secondary-800 dark:to-secondary-700 rounded-2xl border-2 border-primary-200 dark:border-primary-800">
+          <h3 className="text-2xl font-bold text-secondary-900 dark:text-white mb-6">
             Send Me a Message
           </h3>
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-5">
             {/* Name Input */}
             <div>
               <label
                 htmlFor="name"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                className="block text-sm font-semibold text-secondary-700 dark:text-secondary-300 mb-2"
               >
                 Your Name
               </label>
@@ -122,8 +122,8 @@ export function Contact() {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                placeholder="Enter your name"
-                className="w-full px-4 py-3 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                placeholder="Enter your full name"
+                className="w-full px-4 py-3 bg-white dark:bg-secondary-700 border-2 border-secondary-300 dark:border-secondary-600 rounded-xl text-secondary-900 dark:text-white placeholder-secondary-500 dark:placeholder-secondary-400 focus:border-primary-500 dark:focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 focus:outline-none transition-all duration-300"
                 required
               />
             </div>
@@ -132,7 +132,7 @@ export function Contact() {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                className="block text-sm font-semibold text-secondary-700 dark:text-secondary-300 mb-2"
               >
                 Your Email
               </label>
@@ -143,7 +143,7 @@ export function Contact() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="your.email@example.com"
-                className="w-full px-4 py-3 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                className="w-full px-4 py-3 bg-white dark:bg-secondary-700 border-2 border-secondary-300 dark:border-secondary-600 rounded-xl text-secondary-900 dark:text-white placeholder-secondary-500 dark:placeholder-secondary-400 focus:border-primary-500 dark:focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 focus:outline-none transition-all duration-300"
                 required
               />
             </div>
@@ -152,7 +152,7 @@ export function Contact() {
             <div>
               <label
                 htmlFor="message"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                className="block text-sm font-semibold text-secondary-700 dark:text-secondary-300 mb-2"
               >
                 Your Message
               </label>
@@ -161,9 +161,9 @@ export function Contact() {
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
-                placeholder="Type your message here..."
+                placeholder="Tell me about your project or idea..."
                 rows="5"
-                className="w-full px-4 py-3 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 resize-none"
+                className="w-full px-4 py-3 bg-white dark:bg-secondary-700 border-2 border-secondary-300 dark:border-secondary-600 rounded-xl text-secondary-900 dark:text-white placeholder-secondary-500 dark:placeholder-secondary-400 focus:border-primary-500 dark:focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 focus:outline-none transition-all duration-300 resize-none"
                 required
               ></textarea>
             </div>
@@ -171,7 +171,7 @@ export function Contact() {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full px-8 py-3 bg-blue-500 text-white rounded-xl font-semibold hover:scale-[1.02] active:scale-[0.98] transition-transform duration-300 shadow-lg hover:shadow-xl"
+              className="w-full px-8 py-3 bg-gradient-to-r from-primary-600 to-primary-500 text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-primary-500/50 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
             >
               Send Message
             </button>
